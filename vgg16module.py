@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Dec 21 14:26:44 2017
 
-@author: Kobayashi
-"""
 from module import Module
 from flask import Flask, request, render_template
 from keras.models import load_model
@@ -65,7 +61,7 @@ class vgg16module(Module):
             vgg19_model_path = pretrained_model_dir_path + " /imagenet-vgg-verydeep-19.mat"
             ss = StyleTransfer(vgg19_model_path)
 
-            generated_image = ss.fit_and_transform(content_img, style_img, output_dir_path='./static', num_iterations=1)
+            generated_image = ss.fit_and_transform(content_img, style_img, output_dir_path='./static', num_iterations=200)
             generated_image = np.reshape(generated_image,(300, 400, 3))
             generated_image = image.array_to_img(generated_image)
             return render_template('index.html', message='This is a generated image')
